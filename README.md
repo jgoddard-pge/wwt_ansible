@@ -1,2 +1,1 @@
-# wwt_ansible
-training repo
+# bad_security

@@ -1,0 +1,38 @@
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Copy a .ssh config file to disable ssh known host checking
+      ansible.builtin.copy:
+        src: config
+        dest: /root/.ssh/config
+
+    - name: Making a data directory... How could that be bad?
+      ansible.builtin.file:
+        path: /root/code_data
+        state: directory
+        mode: '0755'
+
+    - name: Making another directory in a suspect location.
+      ansible.builtin.file:
+        path: /root/bin
+        state: directory
+        mode: '0755'
+
+    - name: Copy a simple bash script
+      ansible.builtin.copy:
+        src: run_code
+        dest: /root/bin
+        mode: a+x
+        
+    - name: What would my security friends say about this playbook!?
+      ansible.builtin.debug:
+        msg:
+        - "Are you really going to make it easy to run VSCode as SUPER USER!!?"
+        - "This is just irresponsible.  Don't share this code."
+        - "You created a dir that was already in path vs adding a new dir to path?  Working hard to be lazy."
+
+    - name: Might as well install VIM.
+      ansible.builtin.yum:
+        name: vim
+        state: present

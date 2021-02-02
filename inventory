@@ -1,0 +1,11 @@
+---
+
+all:
+  hosts:
+    server01:
+      ansible_host: localhost
+  vars:
+    ansible_ssh_pass: WWTwwt1!
+    ansible_user: wwt
+    ansible_sudo_pass: WWTwwt1!
+

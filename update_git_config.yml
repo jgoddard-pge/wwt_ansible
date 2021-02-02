@@ -1,0 +1,23 @@
+- hosts: all
+  become: yes
+
+  vars:
+    #Add your details below in quotes.
+    git_author_user_name: "jgoddard-pge"
+    git_author_email: "Jared.Goddard@pgn.com"
+  
+  tasks:
+    - name: Set git author name using external module
+      community.general.git_config:
+        name: user.name
+        scope: global
+        value: "{{ git_author_user_name }}"
+      when: git_author_user_name != "" and git_author_user_name != None
+
+
+    - name: Set git author name using external module
+      community.general.git_config:
+        name: user.email
+        scope: global
+        value: "{{ git_author_email }}"
+      when: git_author_email != "" and git_author_email != None
